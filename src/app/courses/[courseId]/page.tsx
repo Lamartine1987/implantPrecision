@@ -213,16 +213,7 @@ export default function CoursePage() {
           </Card>
           {selectedLesson && (
             <>
-              <Card className="mt-6 shadow-md">
-                <CardHeader>
-                  <CardTitle className="font-headline text-2xl">{selectedLesson.title}</CardTitle>
-                  <CardDescription>Duration: {selectedLesson.duration}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{selectedLesson.description}</p>
-                </CardContent>
-              </Card>
-              <div className="mt-4 flex items-center space-x-2 p-4 bg-card rounded-lg shadow-md border">
+              <div className="mt-4 mb-4 flex items-center space-x-2 p-4 bg-card rounded-lg shadow-md border">
                 <Checkbox
                   id={`lesson-completed-${selectedLesson.id}`}
                   checked={!!completedLessons[selectedLesson.id]}
@@ -235,6 +226,15 @@ export default function CoursePage() {
                   Marcar como concluída
                 </Label>
               </div>
+              <Card className="shadow-md">
+                <CardHeader>
+                  <CardTitle className="font-headline text-2xl">{selectedLesson.title}</CardTitle>
+                  <CardDescription>Duration: {selectedLesson.duration}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{selectedLesson.description}</p>
+                </CardContent>
+              </Card>
             </>
           )}
         </div>
