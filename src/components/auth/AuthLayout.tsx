@@ -17,8 +17,8 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
           <Image
             src="https://placehold.co/800x1000.png" 
             alt="Implant Precision - Soluções Odontológicas"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             priority
             data-ai-hint="dental technology" 
           />
