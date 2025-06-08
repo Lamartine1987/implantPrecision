@@ -1,28 +1,57 @@
-import Image from 'next/image';
-import { Film } from 'lucide-react';
 
-interface VideoPlayerPlaceholderProps {
+'use client';
+
+import React from 'react';
+
+interface VideoPlayerProps {
   title: string;
-  videoUrl: string; // This will be the placeholder image URL
-  dataAiHint: string;
+  videoUrl: string;
 }
 
-export default function VideoPlayerPlaceholder({ title, videoUrl, dataAiHint }: VideoPlayerPlaceholderProps) {
-  return (
-    <div className="aspect-video w-full bg-muted rounded-lg overflow-hidden shadow-inner flex flex-col items-center justify-center border">
-      <Image 
-        src={videoUrl} 
-        alt={`Placeholder for ${title}`} 
-        layout="fill"
-        objectFit="cover"
-        className="opacity-80"
-        data-ai-hint={dataAiHint}
-      />
-      <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center p-4 text-center">
-        <Film className="h-16 w-16 text-background/70 mb-4" />
-        <h3 className="text-xl font-semibold text-background font-headline">{title}</h3>
-        <p className="text-sm text-background/80 mt-1">Video content will appear here.</p>
+const getYouTubeEmbedUrl = (url: string): string | null => {
+  try {
+    const urlObj = new URL(url);
+    if (urlObj.hostname === 'www.youtube.com' || urlObj.hostname === 'youtube.com') {
+      if (urlObj.pathname === '/watch') {
+        const videoId = urlObj.searchParams.get('v');
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+      } else if (urlObj.pathname.startsWith('/embed/')) {
+        return url; // Already an embed URL
+      }
+    } else if (urlObj.hostname === 'youtu.be') {
+      const videoId = urlObj.pathname.substring(1);
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    }
+  } catch (error) {
+    console.error('Invalid video URL:', error);
+    return null;
+  }
+  return null;
+};
+
+export default function VideoPlayer({ title, videoUrl }: VideoPlayerProps) {
+  const embedUrl = getYouTubeEmbedUrl(videoUrl);
+
+  if (!embedUrl) {
+    return (
+      <div className="aspect-video w-full bg-muted rounded-lg flex items-center justify-center border">
+        <p className="text-destructive-foreground p-4">Invalid video URL or unsupported video provider.</p>
       </div>
+    );
+  }
+
+  return (
+    <div className="aspect-video w-full bg-black rounded-lg overflow-hidden shadow-inner border">
+      <iframe
+        width="100%"
+        height="100%"
+        src={embedUrl}
+        title={title}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 }

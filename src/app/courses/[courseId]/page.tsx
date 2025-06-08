@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import AppLayout from '@/components/app/AppLayout';
 import { getCourseById, type Course, type Lesson } from '@/lib/mockData';
-import VideoPlayerPlaceholder from '@/components/app/VideoPlayerPlaceholder';
+import VideoPlayer from '@/components/app/VideoPlayerPlaceholder'; // Filename is placeholder, but component is now a player
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -89,10 +90,9 @@ export default function CoursePage() {
           <Card className="shadow-lg overflow-hidden">
             <CardContent className="p-0">
               {selectedLesson ? (
-                <VideoPlayerPlaceholder 
+                <VideoPlayer 
                     title={selectedLesson.title} 
                     videoUrl={selectedLesson.videoUrl}
-                    dataAiHint={selectedLesson.dataAiHint}
                 />
               ) : (
                 <div className="aspect-video w-full bg-muted flex items-center justify-center">
