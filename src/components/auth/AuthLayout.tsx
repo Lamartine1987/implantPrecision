@@ -15,7 +15,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
         {/* Image Side - Hidden on small screens, takes half width on medium+ */}
         <div className="hidden md:block md:w-1/2 relative min-h-[480px] md:min-h-0">
           <Image
-            src="https://placehold.co/800x1000.png" 
+            src="https://placehold.co/800x1000/f0f0f0/cccccc.png" 
             alt="Implant Precision - Soluções Odontológicas"
             fill
             style={{ objectFit: 'cover' }}
