@@ -1,5 +1,4 @@
 import type React from 'react';
-import LogoIcon from '@/components/icons/LogoIcon';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -29,7 +28,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
         <div className="w-full md:w-1/2 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
           <div className="mb-6 flex flex-col items-center text-center">
             <Link href="/" className="flex items-center gap-3 mb-3">
-              <LogoIcon className="h-10 w-10 md:h-12 md:w-12 text-primary" />
+              {/* <LogoIcon className="h-10 w-10 md:h-12 md:w-12 text-primary" /> */}
               <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary">
                 Implant Precision
               </h1>
