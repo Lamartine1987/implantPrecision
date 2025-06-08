@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogOut, UserCircle } from 'lucide-react'; 
+import { LogOut, UserCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -13,12 +13,12 @@ export default function AppHeader() {
   const getDisplayUserName = () => {
     if (currentUser && typeof currentUser.displayName === 'string' && currentUser.displayName.trim() !== '') {
       const names = currentUser.displayName.split(' ');
-      return names.slice(0, 2).join(' '); 
+      return names.slice(0, 2).join(' ');
     }
     if (currentUser && typeof currentUser.email === 'string') {
       return currentUser.email;
     }
-    return 'User'; 
+    return 'User'; // Fallback genérico
   };
 
   return (

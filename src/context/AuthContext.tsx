@@ -20,7 +20,7 @@ interface AuthContextType {
   currentUser: FirebaseUser | null;
   loading: boolean;
   login: (email: string, pass: string) => Promise<any>;
-  register: (name: string, email: string, pass: string) => Promise<any>; // Adicionado 'name'
+  register: (name: string, email: string, pass: string) => Promise<any>;
   logout: () => Promise<void>;
   passwordReset: (email: string) => Promise<void>;
 }
@@ -68,22 +68,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
-  const register = async (name: string, email: string, pass: string) => { // Adicionado 'name'
+  const register = async (name: string, email: string, pass: string) => {
     setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-      // Atualizar o perfil do usuário com o displayName
       if (userCredential.user) {
         await updateProfile(userCredential.user, { displayName: name });
       }
-      // O onAuthStateChanged deve ser acionado com o usuário atualizado,
-      // mas podemos recarregar o usuário para garantir que o displayName esteja disponível imediatamente se necessário.
-      // Para simplificar, vamos assumir que o onAuthStateChanged tratará disso.
-      // Se você precisar do displayName imediatamente após o registro (antes do redirect),
-      // pode ser necessário fazer setCurrentUser({...userCredential.user, displayName: name})
+      // O onAuthStateChanged será acionado com o usuário atualizado.
+      // Para o nome aparecer imediatamente no header após o registro,
+      // seria necessário um setCurrentUser aqui ou um refresh do usuário.
+      // O fluxo atual redireciona para login, o que deve resolver isso no próximo login.
       
       toast({ title: 'Registration Successful', description: 'Please log in with your new account.' });
-      router.push('/login'); // Redireciona para login, onde o usuário fará login e o onAuthStateChanged pegará o nome
+      router.push('/login'); 
       return userCredential;
     } catch (error: any) {
       console.error('Registration error:', error);
