@@ -11,12 +11,17 @@ export default function AppHeader() {
   const { currentUser, logout, loading } = useAuth();
 
   const getDisplayUserName = () => {
-    if (currentUser && typeof currentUser.displayName === 'string' && currentUser.displayName.trim() !== '') {
-      const names = currentUser.displayName.split(' ');
-      return names.slice(0, 2).join(' ');
+    if (loading) {
+      return 'Loading...';
     }
-    if (currentUser && typeof currentUser.email === 'string') {
-      return currentUser.email;
+    if (currentUser) {
+      if (currentUser.displayName && typeof currentUser.displayName === 'string' && currentUser.displayName.trim() !== '') {
+        const names = currentUser.displayName.split(' ');
+        return names.slice(0, 2).join(' ');
+      }
+      if (currentUser.email && typeof currentUser.email === 'string') {
+        return currentUser.email;
+      }
     }
     return 'User'; // Fallback genérico
   };

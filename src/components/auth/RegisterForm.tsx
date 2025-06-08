@@ -28,7 +28,7 @@ export default function RegisterForm() {
     setIsSubmitting(true);
     try {
       // Passar o nome para a função register do contexto
-      await register(name, email, password);
+      await register(name, email, password); 
       // Navigation is handled by AuthContext.
     } catch (err) {
       // Error toast is handled by AuthContext

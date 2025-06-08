@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
-  updateProfile, // Importar updateProfile
+  updateProfile, // Garantir que updateProfile está importado
   type User as FirebaseUser,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
@@ -20,7 +20,7 @@ interface AuthContextType {
   currentUser: FirebaseUser | null;
   loading: boolean;
   login: (email: string, pass: string) => Promise<any>;
-  register: (name: string, email: string, pass: string) => Promise<any>;
+  register: (name: string, email: string, pass: string) => Promise<any>; // Adicionado 'name'
   logout: () => Promise<void>;
   passwordReset: (email: string) => Promise<void>;
 }
@@ -68,17 +68,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   };
 
-  const register = async (name: string, email: string, pass: string) => {
+  const register = async (name: string, email: string, pass: string) => { // 'name' adicionado como parâmetro
     setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+      // Atualiza o perfil do usuário com o nome fornecido
       if (userCredential.user) {
         await updateProfile(userCredential.user, { displayName: name });
+        // Para forçar a atualização do currentUser no contexto imediatamente:
+        // setCurrentUser(userCredential.user); // Isso pode ser feito, mas onAuthStateChanged também pegará
       }
-      // O onAuthStateChanged será acionado com o usuário atualizado.
-      // Para o nome aparecer imediatamente no header após o registro,
-      // seria necessário um setCurrentUser aqui ou um refresh do usuário.
-      // O fluxo atual redireciona para login, o que deve resolver isso no próximo login.
       
       toast({ title: 'Registration Successful', description: 'Please log in with your new account.' });
       router.push('/login'); 
