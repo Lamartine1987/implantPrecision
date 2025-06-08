@@ -4,16 +4,18 @@ import { getDatabase, type Database } from "firebase/database";
 import { getAuth, type Auth } from "firebase/auth";
 
 // TODO: IMPORTANT!
-// Replace the following with your actual Firebase project configuration.
-// You can find this in your Firebase project settings.
+// The following configuration uses the values you provided.
+// However, you MUST still replace "YOUR_DATABASE_URL_FOR_REALTIME_DATABASE"
+// with your actual Firebase Realtime Database URL.
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL_FOR_REALTIME_DATABASE",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAVrjCR7dHh-L2EymjSW3CQYsmIiZLvU8I",
+  authDomain: "implantprecision.firebaseapp.com",
+  databaseURL: "YOUR_DATABASE_URL_FOR_REALTIME_DATABASE", // <-- VOCÊ PRECISA SUBSTITUIR ESTE VALOR!
+  projectId: "implantprecision",
+  storageBucket: "implantprecision.firebasestorage.app",
+  messagingSenderId: "968837496835",
+  appId: "1:968837496835:web:5ac533d74b499653864e36",
+  measurementId: "G-R46PNNTZBB"
 };
 
 // **Explicit checks for ALL critical placeholder values**
