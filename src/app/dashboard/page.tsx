@@ -1,9 +1,35 @@
+
+'use client';
+
 import AppLayout from '@/components/app/AppLayout';
 import CourseCard from '@/components/app/CourseCard';
 import { mockCourses } from '@/lib/mockData';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Loader2 } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function DashboardPage() {
+  const { currentUser, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !currentUser) {
+      router.push('/login');
+    }
+  }, [currentUser, loading, router]);
+
+  if (loading || !currentUser) {
+    return (
+      <AppLayout>
+        <div className="flex flex-col justify-center items-center h-[calc(100vh-10rem)]">
+          <Loader2 className="w-12 h-12 animate-spin text-primary mb-4" />
+          <p className="text-xl text-muted-foreground">Loading dashboard...</p>
+        </div>
+      </AppLayout>
+    );
+  }
+
   return (
     <AppLayout>
       <div className="mb-8">

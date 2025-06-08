@@ -1,6 +1,7 @@
 
 import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
 import { getDatabase, type Database } from "firebase/database";
+import { getAuth, type Auth } from "firebase/auth";
 
 // TODO: IMPORTANT!
 // Replace the following with your actual Firebase project configuration.
@@ -16,6 +17,7 @@ const firebaseConfig = {
 };
 
 let app: FirebaseApp;
+let auth: Auth;
 let db: Database;
 
 if (!getApps().length) {
@@ -24,7 +26,7 @@ if (!getApps().length) {
   app = getApp();
 }
 
-// Initialize Realtime Database and get a reference to the service
+auth = getAuth(app);
 db = getDatabase(app);
 
-export { app, db };
+export { app, auth, db };
