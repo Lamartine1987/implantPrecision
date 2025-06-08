@@ -20,7 +20,6 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
             fill
             style={{ objectFit: 'cover' }}
             priority
-            // data-ai-hint foi removido pois a imagem é específica
           />
            {/* Optional overlay for text or branding on image */}
            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-50"></div>
