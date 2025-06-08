@@ -62,9 +62,17 @@ export default function CoursePage() {
             }
           } catch (error) {
             console.error("Failed to load progress from Firebase:", error);
+            let toastDescription = "Could not load your course progress. Please check your network or try again.";
+            if (error instanceof Error && error.message) {
+              if (error.message.toLowerCase().includes('permission_denied') || error.message.toLowerCase().includes('permission denied')) {
+                toastDescription = "Permission denied. Please check Firebase Database rules.";
+              } else {
+                toastDescription = error.message; 
+              }
+            }
             toast({
               title: "Error Loading Progress",
-              description: "Could not load your course progress.",
+              description: toastDescription,
               variant: "destructive",
             });
             setCompletedLessons({});
@@ -101,9 +109,17 @@ export default function CoursePage() {
       await set(lessonProgressRef, newStatus);
     } catch (error) {
       console.error("Failed to save lesson progress to Firebase:", error);
+      let toastDescription = "Could not save your progress. Please try again.";
+       if (error instanceof Error && error.message) {
+          if (error.message.toLowerCase().includes('permission_denied') || error.message.toLowerCase().includes('permission denied')) {
+            toastDescription = "Permission denied. Please check Firebase Database rules.";
+          } else {
+            toastDescription = error.message;
+          }
+        }
       toast({
         title: "Error Saving Progress",
-        description: "Could not save your progress. Please try again.",
+        description: toastDescription,
         variant: "destructive",
       });
       setCompletedLessons(prevCompletedLessons => {
