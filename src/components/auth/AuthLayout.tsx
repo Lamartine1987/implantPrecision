@@ -19,6 +19,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
             fill
             style={{ objectFit: 'cover' }}
             priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
            {/* Optional overlay for text or branding on image */}
            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-50"></div>
@@ -28,8 +29,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
         <div className="w-full md:w-1/2 p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
           <div className="mb-6 flex flex-col items-center text-center">
             <Link href="/" className="flex items-center gap-3 mb-3">
-              {/* <LogoIcon className="h-10 w-10 md:h-12 md:w-12 text-primary" /> */}
-              <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary">
+              <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary text-style-3d">
                 Implant Precision
               </h1>
             </Link>
