@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'EduHub - Your Learning Platform',
+  title: 'Implant Precision - Your Learning Platform',
   description: 'Online classes and courses to expand your knowledge.',
 };
 

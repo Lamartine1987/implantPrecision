@@ -3,7 +3,7 @@ import RegisterForm from "@/components/auth/RegisterForm";
 
 export default function RegisterPage() {
   return (
-    <AuthLayout title="Create your EduHub account.">
+    <AuthLayout title="Create your Implant Precision account.">
       <RegisterForm />
     </AuthLayout>
   );

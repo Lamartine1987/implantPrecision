@@ -14,7 +14,7 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
         <div className="mb-8 flex flex-col items-center">
           <Link href="/" className="flex items-center gap-2 mb-2">
             <LogoIcon className="h-10 w-10 text-primary" />
-            <h1 className="text-3xl font-headline font-bold text-primary">EduHub</h1>
+            <h1 className="text-3xl font-headline font-bold text-primary">Implant Precision</h1>
           </Link>
           <p className="text-muted-foreground text-center">{title}</p>
         </div>

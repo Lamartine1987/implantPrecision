@@ -15,7 +15,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </div>
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        © {new Date().getFullYear()} EduHub. All rights reserved.
+        © {new Date().getFullYear()} Implant Precision. All rights reserved.
       </footer>
     </div>
   );
