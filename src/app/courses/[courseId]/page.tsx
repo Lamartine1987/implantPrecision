@@ -213,7 +213,7 @@ export default function CoursePage() {
           </Card>
           {selectedLesson && (
             <>
-              <div className="mt-4 mb-4 flex items-center space-x-2 p-4 bg-card rounded-lg shadow-md border">
+              <div className="mt-6 mb-4 flex items-center space-x-2 p-4 bg-card rounded-lg shadow-md border">
                 <Checkbox
                   id={`lesson-completed-${selectedLesson.id}`}
                   checked={!!completedLessons[selectedLesson.id]}
@@ -246,7 +246,7 @@ export default function CoursePage() {
               <CardDescription>{course.lessons.length} lessons in this course.</CardDescription>
             </CardHeader>
             <CardContent className="p-0">
-              <ScrollArea className="h-[calc(100vh-20rem)] sm:h-[calc(100vh-24rem)] md:h-[30rem] lg:h-[calc(100vh-28rem)]">
+              <ScrollArea className="h-[calc(100vh-20rem)] sm:h-[calc(100vh-24rem)] md:h-[35rem] lg:h-[calc(100vh-26rem)]">
                 <ul className="divide-y divide-border">
                   {course.lessons.map((lesson, index) => (
                     <li key={lesson.id}>
