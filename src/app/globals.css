@@ -4,87 +4,88 @@
 
 @layer base {
   :root {
-    /* EduHub Theme Colors */
-    --background: 240 17% 97%; /* Very light gray (#F4F4F8) */
-    --foreground: 270 10% 25%; /* Darker, less saturated purple for text */
+    --background: 220 30% 97%; /* very light almost white-blue */
+    --foreground: 220 20% 15%; /* dark blue-gray for text */
 
-    --primary: 270 44% 85%;  /* Warm light-purple (#B19CD9) */
-    --primary-foreground: 270 90% 15%; /* Very dark purple for text on primary */
+    --primary: 210 75% 50%;  /* a vibrant medium blue */
+    --primary-foreground: 0 0% 100%; /* white for text on primary */
 
-    --accent: 270 60% 65%;   /* A gentle violet (#9B70D7) */
-    --accent-foreground: 0 0% 100%; /* White for text on accent */
+    --accent: 195 80% 45%;   /* a slightly lighter, brighter blue (cyan-ish) */
+    --accent-foreground: 0 0% 100%; /* white for text on accent */
     
-    --ring: 270 44% 75%; /* Lighter shade of primary for focus rings */
+    --ring: 210 75% 60%; /* a lighter shade of primary for focus rings */
 
-    /* Retaining other colors from the previous theme as PRD doesn't specify them */
+    /* other shadcn colors that should probably be themed too, but keeping for now */
     --card: 0 0% 100%;
     --card-foreground: 220 20% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 15%;
-    --secondary: 210 60% 93%; 
-    --secondary-foreground: 210 50% 30%;
-    --muted: 220 25% 94%; 
-    --muted-foreground: 220 15% 45%;
-    --destructive: 0 75% 55%; 
+    --secondary: 210 60% 93%; /* light blue-gray */
+    --secondary-foreground: 210 50% 30%; /* darker blue-gray */
+    --muted: 220 25% 94%; /* very light blue-gray */
+    --muted-foreground: 220 15% 45%; /* mid blue-gray */
+    --destructive: 0 75% 55%; /* a standard red for errors */
     --destructive-foreground: 0 0% 100%;
-    --border: 210 30% 88%; 
-    --input: 210 40% 96%; 
+    --border: 210 30% 88%; /* light blue-gray border */
+    --input: 210 40% 96%; /* very light blue-gray input background */
 
     --radius: 0.5rem;
 
-    /* Sidebar and Chart colors from the previous theme - adjust if PRD provides specifics later */
-    --sidebar-background: 220 25% 95%;
-    --sidebar-foreground: 220 20% 15%;
-    --sidebar-primary: 210 75% 50%;
+    /* Sidebar Specific - Can be themed further if needed */
+    --sidebar-background: 220 25% 95%; /* Light blue-gray, slightly darker than main bg */
+    --sidebar-foreground: 220 20% 15%; /* Dark blue-gray text */
+    --sidebar-primary: 210 75% 50%; /* Same as main primary */
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 195 80% 45%;
+    --sidebar-accent: 195 80% 45%; /* Same as main accent */
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 210 30% 85%;
-    --sidebar-ring: 210 75% 60%;
+    --sidebar-border: 210 30% 85%; /* Slightly darker border for sidebar elements */
+    --sidebar-ring: 210 75% 60%; /* Same as main ring */
 
-    --chart-1: 210 70% 50%;
-    --chart-2: 190 65% 45%;
-    --chart-3: 220 50% 60%;
-    --chart-4: 180 40% 50%;
-    --chart-5: 200 75% 55%;
+    /* Chart colors - Using a blue monochromatic scheme */
+    --chart-1: 210 70% 50%; /* Blue */
+    --chart-2: 190 65% 45%; /* Lighter Blue */
+    --chart-3: 220 50% 60%; /* Another shade of Blue */
+    --chart-4: 180 40% 50%; /* Cyan-Blue */
+    --chart-5: 200 75% 55%; /* Sky Blue */
   }
 
   .dark {
-    /* EduHub Dark Theme Colors */
-    --background: 270 10% 15%; /* Dark purple-gray */
-    --foreground: 240 15% 85%; /* Lighter version of light fg for dark mode */
+    --background: 220 20% 10%; /* very dark blue */
+    --foreground: 210 30% 95%; /* light blue-gray text */
 
-    --primary: 270 50% 70%;   /* Lighter purple for dark mode */
-    --primary-foreground: 270 90% 10%; /* Very dark purple */
+    --primary: 210 70% 65%;   /* a lighter, softer blue for dark mode */
+    --primary-foreground: 210 70% 10%; /* very dark blue for text on primary */
 
-    --accent: 270 60% 60%;    /* Slightly lighter/desaturated violet */
-    --accent-foreground: 0 0% 100%;
-    
-    --ring: 270 50% 60%; /* Adjusted ring for dark primary */
+    --accent: 195 70% 55%;    /* a lighter, brighter cyan-blue for dark mode */
+    --accent-foreground: 195 70% 10%; /* very dark blue for text on accent */
 
-    /* Retaining other dark colors from the previous theme */
-    --card: 220 20% 12%; 
+    --ring: 210 70% 50%; /* slightly darker blue ring for dark mode */
+
+    /* other shadcn dark colors */
+    --card: 220 20% 12%; /* dark blue-gray card */
     --card-foreground: 210 30% 95%;
     --popover: 220 20% 10%;
     --popover-foreground: 210 30% 95%;
-    --secondary: 210 25% 20%; 
-    --secondary-foreground: 210 25% 85%;
-    --muted: 220 15% 20%; 
-    --muted-foreground: 220 15% 65%;
-    --destructive: 0 65% 50%; 
+    --secondary: 210 25% 20%; /* darker blue-gray */
+    --secondary-foreground: 210 25% 85%; /* lighter blue-gray */
+    --muted: 220 15% 20%; /* dark blue-gray */
+    --muted-foreground: 220 15% 65%; /* mid-light blue-gray */
+    --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 210 20% 28%; 
-    --input: 210 25% 18%; 
-    
-    --sidebar-background: 220 20% 15%;
-    --sidebar-foreground: 210 30% 90%;
-    --sidebar-primary: 210 70% 65%;
-    --sidebar-primary-foreground: 210 70% 10%;
-    --sidebar-accent: 195 70% 55%;
-    --sidebar-accent-foreground: 195 70% 10%;
-    --sidebar-border: 210 20% 25%;
-    --sidebar-ring: 210 70% 50%;
+    --border: 210 20% 28%; /* dark blue-gray border */
+    --input: 210 25% 18%; /* dark blue-gray input background */
 
+    /* Sidebar Specific Dark */
+    --sidebar-background: 220 20% 15%; /* Darker blue-gray for sidebar */
+    --sidebar-foreground: 210 30% 90%; /* Light blue-gray text */
+    --sidebar-primary: 210 70% 65%; /* Same as dark primary */
+    --sidebar-primary-foreground: 210 70% 10%;
+    --sidebar-accent: 195 70% 55%; /* Same as dark accent */
+    --sidebar-accent-foreground: 195 70% 10%;
+    --sidebar-border: 210 20% 25%; /* Darker border for sidebar elements */
+    --sidebar-ring: 210 70% 50%; /* Same as dark ring */
+
+    /* Chart colors - Using a blue monochromatic scheme for dark mode */
     --chart-1: 210 60% 60%;
     --chart-2: 190 55% 50%;
     --chart-3: 220 40% 70%;
