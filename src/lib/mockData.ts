@@ -5,7 +5,7 @@ import type { LucideIcon } from 'lucide-react';
 export interface Lesson {
   id: string;
   title: string;
-  videoUrl: string; 
+  videoUrl: string;
   duration: string;
   description: string;
   dataAiHint: string;
@@ -29,8 +29,8 @@ export const mockCourses: Course[] = [
     title: 'Module I - Essentials',
     description: 'Learn the basics to build a solid foundation for the upcoming videos.',
     longDescription: 'Dive deep into character development, plot structuring, and finding your unique voice. This course covers various genres and techniques to help you craft compelling stories that captivate readers.',
-    thumbnailUrl: '/implant-precision-course-thumbnail.jpg', // Updated thumbnail
-    dataAiHint: 'dental implant', // Updated AI hint
+    thumbnailUrl: '/implant-precision-course-thumbnail.jpg', // Ensuring this is correct for course 1
+    dataAiHint: 'dental implant', // Ensuring this is correct for course 1
     instructor: 'Ricardo Campos',
     Icon: BookOpen,
     lessons: [
@@ -44,8 +44,8 @@ export const mockCourses: Course[] = [
     title: 'Module II - Fundamentals',
     description: 'Learn the basics of digital painting and illustration.',
     longDescription: 'From understanding your software to mastering digital brushes and color theory, this course provides a solid foundation for aspiring digital artists. Includes practical exercises and projects.',
-    thumbnailUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'digital painting',
+    thumbnailUrl: 'https://placehold.co/600x400.png', // Restored placeholder
+    dataAiHint: 'digital painting', // Restored hint
     instructor: 'Ricardo Campos',
     Icon: Palette,
     lessons: [
@@ -58,8 +58,8 @@ export const mockCourses: Course[] = [
     title: 'Module III - Expert',
     description: 'Build modern websites with HTML, CSS, and JavaScript.',
     longDescription: 'This comprehensive course takes you from zero to hero in front-end web development. You\'ll learn to structure web pages, style them beautifully, and add interactivity with JavaScript.',
-    thumbnailUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'coding screen',
+    thumbnailUrl: 'https://placehold.co/600x400.png', // Restored placeholder
+    dataAiHint: 'coding screen', // Restored hint
     instructor: 'Ricardo Campos',
     Icon: Code2,
     lessons: [
@@ -73,8 +73,8 @@ export const mockCourses: Course[] = [
     title: 'Module IV - Super Expert',
     description: 'Cultivate peace and presence in your daily life.',
     longDescription: 'Explore various meditation techniques, understand the science behind mindfulness, and learn how to integrate these practices for reduced stress and improved well-being.',
-    thumbnailUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'meditation nature',
+    thumbnailUrl: 'https://placehold.co/600x400.png', // Restored placeholder
+    dataAiHint: 'meditation nature', // Restored hint
     instructor: 'Ricardo Campos',
     Icon: Brain,
     lessons: [
