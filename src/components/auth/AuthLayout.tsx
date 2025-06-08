@@ -15,12 +15,12 @@ export default function AuthLayout({ children, title }: AuthLayoutProps) {
         {/* Image Side - Hidden on small screens, takes half width on medium+ */}
         <div className="hidden md:block md:w-1/2 relative min-h-[480px] md:min-h-0">
           <Image
-            src="https://placehold.co/800x1000/f0f0f0/cccccc.png" 
+            src="/implant-precision-auth-graphic.jpg" 
             alt="Implant Precision - Soluções Odontológicas"
             fill
             style={{ objectFit: 'cover' }}
             priority
-            data-ai-hint="dental technology" 
+            // data-ai-hint foi removido pois a imagem é específica
           />
            {/* Optional overlay for text or branding on image */}
            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-50"></div>
