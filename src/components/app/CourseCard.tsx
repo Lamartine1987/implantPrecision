@@ -1,15 +1,18 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import type { Course } from '@/lib/mockData';
 import { ArrowRight, Users, Clock } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
 
 interface CourseCardProps {
   course: Course;
+  progressPercentage?: number; // Nova prop para o progresso
 }
 
-export default function CourseCard({ course }: CourseCardProps) {
+export default function CourseCard({ course, progressPercentage }: CourseCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <CardHeader className="p-0">
@@ -33,6 +36,14 @@ export default function CourseCard({ course }: CourseCardProps) {
           {course.title}
         </h3>
         <CardDescription className="text-sm text-muted-foreground mb-3 line-clamp-3">{course.description}</CardDescription>
+        
+        {typeof progressPercentage === 'number' && (
+          <div className="mt-2 mb-4">
+            <Progress value={progressPercentage} className="h-2 w-full" aria-label={`Progresso do curso: ${progressPercentage.toFixed(0)}%`} />
+            <p className="text-xs text-muted-foreground mt-1 text-right">{progressPercentage.toFixed(0)}% Completo</p>
+          </div>
+        )}
+
         <div className="text-xs text-muted-foreground flex items-center">
           <Users className="w-4 h-4 mr-1.5" />
           <span>By {course.instructor}</span>
