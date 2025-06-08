@@ -13,13 +13,13 @@ export default function AppHeader() {
   const getDisplayUserName = () => {
     if (currentUser && typeof currentUser.displayName === 'string' && currentUser.displayName.trim() !== '') {
       const names = currentUser.displayName.split(' ');
-      return names.slice(0, 2).join(' ');
+      return names.slice(0, 2).join(' '); // Pega os dois primeiros nomes
     }
-    // Fallback to email if displayName is not available or not a non-empty string
+    // Fallback para o email se displayName não estiver disponível ou for uma string vazia
     if (currentUser && typeof currentUser.email === 'string') {
       return currentUser.email;
     }
-    // Generic fallback if neither is available (should be rare for an authenticated user)
+    // Fallback genérico se nenhum dos dois estiver disponível (deve ser raro para um usuário autenticado)
     return 'User'; 
   };
 
