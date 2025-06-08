@@ -13,15 +13,23 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import Image from 'next/image';
 import { ArrowLeft, PlayCircle, CheckCircle, Clock, Users, Info } from 'lucide-react';
+import { db } from '@/lib/firebase'; // Firebase Realtime Database instance
+import { ref, set, get } from 'firebase/database';
+import { useToast } from "@/hooks/use-toast";
 
 interface CompletedLessons {
   [lessonId: string]: boolean;
 }
 
+// TODO: Replace this MOCK_USER_ID with the actual authenticated user's ID
+// once Firebase Authentication is implemented.
+const MOCK_USER_ID = "testUser123";
+
 export default function CoursePage() {
   const router = useRouter();
   const params = useParams();
   const courseId = params.courseId as string;
+  const { toast } = useToast();
 
   const [course, setCourse] = useState<Course | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
@@ -36,36 +44,71 @@ export default function CoursePage() {
         if (fetchedCourse.lessons.length > 0) {
           setSelectedLesson(fetchedCourse.lessons[0]);
         }
-        // Load completed lessons from localStorage
-        // This check ensures localStorage is only accessed on the client side
-        if (typeof window !== 'undefined') {
-            const storedProgress = localStorage.getItem(`completedLessons_${courseId}`);
-            if (storedProgress) {
-              try {
-                setCompletedLessons(JSON.parse(storedProgress));
-              } catch (e) {
-                console.error("Failed to parse completed lessons from localStorage", e);
-                // Optionally, clear the corrupted item
-                // localStorage.removeItem(`completedLessons_${courseId}`);
-              }
+
+        // Load completed lessons from Firebase Realtime Database
+        const loadProgress = async () => {
+          if (!fetchedCourse.id) return; // Should not happen if courseId is valid
+          try {
+            const userCourseProgressRef = ref(db, `usersProgress/${MOCK_USER_ID}/${fetchedCourse.id}`);
+            const snapshot = await get(userCourseProgressRef);
+            if (snapshot.exists()) {
+              setCompletedLessons(snapshot.val());
+            } else {
+              setCompletedLessons({}); // No progress found for this user/course
             }
-        }
+          } catch (error) {
+            console.error("Failed to load progress from Firebase:", error);
+            toast({
+              title: "Error Loading Progress",
+              description: "Could not load your course progress. Please check your connection or Firebase setup.",
+              variant: "destructive",
+            });
+            setCompletedLessons({}); // Default to no progress on error
+          } finally {
+            setIsLoading(false);
+          }
+        };
+        loadProgress();
+
       } else {
         router.push('/dashboard');
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }
-  }, [courseId, router]);
+  }, [courseId, router, toast]);
 
-  const handleToggleLessonCompleted = (lessonId: string) => {
-    if (!course || !selectedLesson) return; // Ensure course and selectedLesson are available
-    const newCompletedLessons = {
+  const handleToggleLessonCompleted = async (lessonIdToToggle: string) => {
+    if (!course || !selectedLesson || !lessonIdToToggle) return;
+
+    const currentStatus = !!completedLessons[lessonIdToToggle];
+    const newStatus = !currentStatus;
+
+    // Optimistic UI update
+    const newCompletedLessonsOptimistic = {
       ...completedLessons,
-      [lessonId]: !completedLessons[lessonId],
+      [lessonIdToToggle]: newStatus,
     };
-    setCompletedLessons(newCompletedLessons);
-    if (typeof window !== 'undefined') {
-        localStorage.setItem(`completedLessons_${course.id}`, JSON.stringify(newCompletedLessons));
+    setCompletedLessons(newCompletedLessonsOptimistic);
+
+    try {
+      const lessonProgressRef = ref(db, `usersProgress/${MOCK_USER_ID}/${course.id}/${lessonIdToToggle}`);
+      await set(lessonProgressRef, newStatus);
+      // Firebase saved successfully, optimistic state is correct.
+    } catch (error) {
+      console.error("Failed to save lesson progress to Firebase:", error);
+      toast({
+        title: "Error Saving Progress",
+        description: "Could not save your progress. Please try again.",
+        variant: "destructive",
+      });
+      // Revert optimistic update if Firebase save fails
+      setCompletedLessons(prevCompletedLessons => {
+        const reverted = { ...prevCompletedLessons };
+        if (reverted[lessonIdToToggle] === newStatus) { // Check if it's the one we tried to change
+           reverted[lessonIdToToggle] = currentStatus; // Revert to original status
+        }
+        return reverted;
+      });
     }
   };
 
@@ -204,5 +247,3 @@ export default function CoursePage() {
     </AppLayout>
   );
 }
-
-    
