@@ -29,8 +29,8 @@ export const mockCourses: Course[] = [
     title: 'Module I - Essentials',
     description: 'Learn the basics to build a solid foundation for the upcoming videos.',
     longDescription: 'Dive deep into character development, plot structuring, and finding your unique voice. This course covers various genres and techniques to help you craft compelling stories that captivate readers.',
-    thumbnailUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'writing book',
+    thumbnailUrl: '/implant-precision-course-thumbnail.jpg', // Updated thumbnail
+    dataAiHint: 'dental implant', // Updated AI hint
     instructor: 'Ricardo Campos',
     Icon: BookOpen,
     lessons: [
