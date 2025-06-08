@@ -13,13 +13,11 @@ export default function AppHeader() {
   const getDisplayUserName = () => {
     if (currentUser && typeof currentUser.displayName === 'string' && currentUser.displayName.trim() !== '') {
       const names = currentUser.displayName.split(' ');
-      return names.slice(0, 2).join(' '); // Pega os dois primeiros nomes
+      return names.slice(0, 2).join(' '); 
     }
-    // Fallback para o email se displayName não estiver disponível ou for uma string vazia
     if (currentUser && typeof currentUser.email === 'string') {
       return currentUser.email;
     }
-    // Fallback genérico se nenhum dos dois estiver disponível (deve ser raro para um usuário autenticado)
     return 'User'; 
   };
 
@@ -38,7 +36,7 @@ export default function AppHeader() {
                 <UserCircle className="h-5 w-5" />
                 <span>{getDisplayUserName()}</span>
               </div>
-              <Button variant="outline" onClick={logout}>
+              <Button variant="destructive" onClick={logout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
               </Button>
