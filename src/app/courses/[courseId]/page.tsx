@@ -5,13 +5,18 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import AppLayout from '@/components/app/AppLayout';
 import { getCourseById, type Course, type Lesson } from '@/lib/mockData';
-import VideoPlayer from '@/components/app/VideoPlayerPlaceholder'; // Filename is placeholder, but component is now a player
+import VideoPlayer from '@/components/app/VideoPlayerPlaceholder';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import Image from 'next/image';
 import { ArrowLeft, PlayCircle, CheckCircle, Clock, Users, Info } from 'lucide-react';
+
+interface CompletedLessons {
+  [lessonId: string]: boolean;
+}
 
 export default function CoursePage() {
   const router = useRouter();
@@ -21,23 +26,48 @@ export default function CoursePage() {
   const [course, setCourse] = useState<Course | null>(null);
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [completedLessons, setCompletedLessons] = useState<CompletedLessons>({});
 
   useEffect(() => {
     if (courseId) {
       const fetchedCourse = getCourseById(courseId);
       if (fetchedCourse) {
         setCourse(fetchedCourse);
-        // Select the first lesson by default if available
         if (fetchedCourse.lessons.length > 0) {
           setSelectedLesson(fetchedCourse.lessons[0]);
         }
+        // Load completed lessons from localStorage
+        // This check ensures localStorage is only accessed on the client side
+        if (typeof window !== 'undefined') {
+            const storedProgress = localStorage.getItem(`completedLessons_${courseId}`);
+            if (storedProgress) {
+              try {
+                setCompletedLessons(JSON.parse(storedProgress));
+              } catch (e) {
+                console.error("Failed to parse completed lessons from localStorage", e);
+                // Optionally, clear the corrupted item
+                // localStorage.removeItem(`completedLessons_${courseId}`);
+              }
+            }
+        }
       } else {
-        // Handle course not found, e.g., redirect or show error
-        router.push('/dashboard'); // Simple redirect for now
+        router.push('/dashboard');
       }
       setIsLoading(false);
     }
   }, [courseId, router]);
+
+  const handleToggleLessonCompleted = (lessonId: string) => {
+    if (!course || !selectedLesson) return; // Ensure course and selectedLesson are available
+    const newCompletedLessons = {
+      ...completedLessons,
+      [lessonId]: !completedLessons[lessonId],
+    };
+    setCompletedLessons(newCompletedLessons);
+    if (typeof window !== 'undefined') {
+        localStorage.setItem(`completedLessons_${course.id}`, JSON.stringify(newCompletedLessons));
+    }
+  };
 
   if (isLoading) {
     return (
@@ -102,15 +132,28 @@ export default function CoursePage() {
             </CardContent>
           </Card>
           {selectedLesson && (
-            <Card className="mt-6 shadow-md">
-              <CardHeader>
-                <CardTitle className="font-headline text-2xl">{selectedLesson.title}</CardTitle>
-                <CardDescription>Duration: {selectedLesson.duration}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{selectedLesson.description}</p>
-              </CardContent>
-            </Card>
+            <>
+              <Card className="mt-6 shadow-md">
+                <CardHeader>
+                  <CardTitle className="font-headline text-2xl">{selectedLesson.title}</CardTitle>
+                  <CardDescription>Duration: {selectedLesson.duration}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{selectedLesson.description}</p>
+                </CardContent>
+              </Card>
+              <div className="mt-4 flex items-center space-x-2 p-4 bg-card rounded-lg shadow-md border">
+                <Checkbox
+                  id={`lesson-completed-${selectedLesson.id}`}
+                  checked={!!completedLessons[selectedLesson.id]}
+                  onCheckedChange={() => handleToggleLessonCompleted(selectedLesson.id)}
+                  aria-label="Mark lesson as completed"
+                />
+                <Label htmlFor={`lesson-completed-${selectedLesson.id}`} className="text-sm font-medium cursor-pointer select-none">
+                  Marcar como concluída
+                </Label>
+              </div>
+            </>
           )}
         </div>
 
@@ -121,15 +164,15 @@ export default function CoursePage() {
               <CardDescription>{course.lessons.length} lessons in this course.</CardDescription>
             </CardHeader>
             <CardContent className="p-0">
-              <ScrollArea className="h-[calc(100vh-20rem)] sm:h-[calc(100vh-24rem)] md:h-[30rem] lg:h-[calc(100vh-28rem)]"> {/* Adjusted height */}
-                <ul className="divide-y">
+              <ScrollArea className="h-[calc(100vh-20rem)] sm:h-[calc(100vh-24rem)] md:h-[30rem] lg:h-[calc(100vh-28rem)]">
+                <ul className="divide-y divide-border">
                   {course.lessons.map((lesson, index) => (
                     <li key={lesson.id}>
                       <Button
                         variant="ghost"
                         className={`w-full justify-start h-auto p-4 text-left rounded-none ${
                           selectedLesson?.id === lesson.id ? 'bg-accent/20 text-accent-foreground' : ''
-                        }`}
+                        } hover:bg-accent/10`}
                         onClick={() => setSelectedLesson(lesson)}
                       >
                         <div className="flex items-center w-full">
@@ -141,10 +184,13 @@ export default function CoursePage() {
                           
                           <div className="flex-grow overflow-hidden">
                             <p className="font-medium truncate">{lesson.title}</p>
-                            <p className="text-xs text-muted-foreground">{lesson.duration}</p>
+                            <div className="flex items-center">
+                                <p className="text-xs text-muted-foreground">{lesson.duration}</p>
+                                {completedLessons[lesson.id] && (
+                                    <CheckCircle className="h-4 w-4 ml-2 text-green-500 shrink-0" />
+                                )}
+                            </div>
                           </div>
-                          {/* Placeholder for completion status */}
-                          {/* <CheckCircle className="h-5 w-5 ml-auto text-green-500" /> */}
                         </div>
                       </Button>
                     </li>
@@ -158,3 +204,5 @@ export default function CoursePage() {
     </AppLayout>
   );
 }
+
+    

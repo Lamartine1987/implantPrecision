@@ -44,7 +44,7 @@ export const mockCourses: Course[] = [
     title: 'Module II - Fundamentals',
     description: 'Learn the basics of digital painting and illustration.',
     longDescription: 'From understanding your software to mastering digital brushes and color theory, this course provides a solid foundation for aspiring digital artists. Includes practical exercises and projects.',
-    thumbnailUrl: 'https://placehold.co/600x400.png', // Restored placeholder
+    thumbnailUrl: '/implant-precision-course-thumbnail.jpg', // Restored placeholder
     dataAiHint: 'digital painting', // Restored hint
     instructor: 'Ricardo Campos',
     Icon: Palette,
@@ -58,7 +58,7 @@ export const mockCourses: Course[] = [
     title: 'Module III - Expert',
     description: 'Build modern websites with HTML, CSS, and JavaScript.',
     longDescription: 'This comprehensive course takes you from zero to hero in front-end web development. You\'ll learn to structure web pages, style them beautifully, and add interactivity with JavaScript.',
-    thumbnailUrl: 'https://placehold.co/600x400.png', // Restored placeholder
+    thumbnailUrl: '/implant-precision-course-thumbnail.jpg', // Restored placeholder
     dataAiHint: 'coding screen', // Restored hint
     instructor: 'Ricardo Campos',
     Icon: Code2,
@@ -73,7 +73,7 @@ export const mockCourses: Course[] = [
     title: 'Module IV - Super Expert',
     description: 'Cultivate peace and presence in your daily life.',
     longDescription: 'Explore various meditation techniques, understand the science behind mindfulness, and learn how to integrate these practices for reduced stress and improved well-being.',
-    thumbnailUrl: 'https://placehold.co/600x400.png', // Restored placeholder
+    thumbnailUrl: '/implant-precision-course-thumbnail.jpg', // Restored placeholder
     dataAiHint: 'meditation nature', // Restored hint
     instructor: 'Ricardo Campos',
     Icon: Brain,
