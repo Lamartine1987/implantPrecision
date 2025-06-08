@@ -27,10 +27,8 @@ export default function RegisterForm() {
     setError(null);
     setIsSubmitting(true);
     try {
-      await register(email, password);
-      // Name is not directly used by Firebase Auth for email/password,
-      // but you might want to save it to Firebase DB (e.g. Firestore)
-      // along with the user's UID after successful registration.
+      // Passar o nome para a função register do contexto
+      await register(name, email, password);
       // Navigation is handled by AuthContext.
     } catch (err) {
       // Error toast is handled by AuthContext

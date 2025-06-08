@@ -4,89 +4,86 @@
 
 @layer base {
   :root {
-    --background: 220 30% 97%; /* Lighter, slightly bluer light gray #F5F8FA */
-    --foreground: 220 20% 15%; /* Dark cool blue-gray for text #1E242B */
+    /* EduHub Theme Colors */
+    --background: 240 17% 97%; /* Very light gray (#F4F4F8) */
+    --foreground: 270 10% 25%; /* Darker, less saturated purple for text */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 220 20% 15%; /* Dark cool blue-gray for text on card */
+    --primary: 270 44% 85%;  /* Warm light-purple (#B19CD9) */
+    --primary-foreground: 270 90% 15%; /* Very dark purple for text on primary */
 
+    --accent: 270 60% 65%;   /* A gentle violet (#9B70D7) */
+    --accent-foreground: 0 0% 100%; /* White for text on accent */
+    
+    --ring: 270 44% 75%; /* Lighter shade of primary for focus rings */
+
+    /* Retaining other colors from the previous theme as PRD doesn't specify them */
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 15%;
-
-    --primary: 210 75% 50%; /* Strong, confident blue #3385CC */
-    --primary-foreground: 0 0% 100%; /* White for text on primary */
-
-    --secondary: 210 60% 93%; /* Very light, desaturated blue #E0EAF7 */
-    --secondary-foreground: 210 50% 30%; /* Darker blue for text on secondary #3D5A73 */
-
-    --muted: 220 25% 94%; /* Light cool blue-gray #E8ECF0 */
-    --muted-foreground: 220 15% 45%; /* Softer cool blue-gray for muted text #646E7A */
-
-    --accent: 195 80% 45%; /* Vibrant cyan-blue #1FA6D1 */
-    --accent-foreground: 0 0% 100%; /* White for text on accent */
-
-    --destructive: 0 75% 55%; /* Clearer red #D94A4A */
-    --destructive-foreground: 0 0% 100%; /* White for text on destructive */
-
-    --border: 210 30% 88%; /* Light cool blue-gray border #D3DDE8 */
-    --input: 210 40% 96%; /* Slightly off-white cool blue-gray for input backgrounds #F0F5FA */
-    --ring: 210 75% 60%; /* Lighter shade of primary blue for focus rings #5CAEFF */
+    --secondary: 210 60% 93%; 
+    --secondary-foreground: 210 50% 30%;
+    --muted: 220 25% 94%; 
+    --muted-foreground: 220 15% 45%;
+    --destructive: 0 75% 55%; 
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 30% 88%; 
+    --input: 210 40% 96%; 
 
     --radius: 0.5rem;
 
-    --sidebar-background: 220 25% 95%; /* Light bluer gray #EEF1F5 */
-    --sidebar-foreground: 220 20% 15%; /* Dark cool blue-gray */
-    --sidebar-primary: 210 75% 50%; /* Primary blue */
-    --sidebar-primary-foreground: 0 0% 100%; /* White */
-    --sidebar-accent: 195 80% 45%; /* Accent cyan-blue */
-    --sidebar-accent-foreground: 0 0% 100%; /* White */
-    --sidebar-border: 210 30% 85%; /* Lighter bluer gray border #CFDBE7 */
-    --sidebar-ring: 210 75% 60%; /* Lighter primary blue for ring */
+    /* Sidebar and Chart colors from the previous theme - adjust if PRD provides specifics later */
+    --sidebar-background: 220 25% 95%;
+    --sidebar-foreground: 220 20% 15%;
+    --sidebar-primary: 210 75% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 195 80% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 210 30% 85%;
+    --sidebar-ring: 210 75% 60%;
 
-    --chart-1: 210 70% 50%; /* Blue */
-    --chart-2: 190 65% 45%; /* Teal */
-    --chart-3: 220 50% 60%; /* Slate Blue */
-    --chart-4: 180 40% 50%; /* Cyan-Gray */
-    --chart-5: 200 75% 55%; /* Sky Blue */
+    --chart-1: 210 70% 50%;
+    --chart-2: 190 65% 45%;
+    --chart-3: 220 50% 60%;
+    --chart-4: 180 40% 50%;
+    --chart-5: 200 75% 55%;
   }
 
   .dark {
-    --background: 220 20% 10%; /* Dark cool slate-blue #12151A */
-    --foreground: 210 30% 95%; /* Very light cool blue-gray #EFF3F7 */
+    /* EduHub Dark Theme Colors */
+    --background: 270 10% 15%; /* Dark purple-gray */
+    --foreground: 240 15% 85%; /* Lighter version of light fg for dark mode */
 
-    --card: 220 20% 12%; /* Slightly lighter than bg #171A1F */
+    --primary: 270 50% 70%;   /* Lighter purple for dark mode */
+    --primary-foreground: 270 90% 10%; /* Very dark purple */
+
+    --accent: 270 60% 60%;    /* Slightly lighter/desaturated violet */
+    --accent-foreground: 0 0% 100%;
+    
+    --ring: 270 50% 60%; /* Adjusted ring for dark primary */
+
+    /* Retaining other dark colors from the previous theme */
+    --card: 220 20% 12%; 
     --card-foreground: 210 30% 95%;
-
     --popover: 220 20% 10%;
     --popover-foreground: 210 30% 95%;
-
-    --primary: 210 70% 65%; /* Lighter blue for dark mode #73B2FF */
-    --primary-foreground: 210 70% 10%; /* Dark blue for text on light blue #0D2C4D */
-
-    --secondary: 210 25% 20%; /* Dark desaturated blue #29313B */
-    --secondary-foreground: 210 25% 85%; /* Light desaturated blue #C7D0DB */
-
-    --muted: 220 15% 20%; /* Darker cool blue-gray #2A2E33 */
-    --muted-foreground: 220 15% 65%; /* Lighter cool blue-gray #98A0A9 */
-
-    --accent: 195 70% 55%; /* Slightly desaturated/lighter cyan-blue #4CBEE6 */
-    --accent-foreground: 195 70% 10%; /* Dark cyan-blue for text #0C3240 */
-
-    --destructive: 0 65% 50%; /* Slightly less intense red for dark mode #CC4D4D */
+    --secondary: 210 25% 20%; 
+    --secondary-foreground: 210 25% 85%;
+    --muted: 220 15% 20%; 
+    --muted-foreground: 220 15% 65%;
+    --destructive: 0 65% 50%; 
     --destructive-foreground: 0 0% 100%;
-
-    --border: 210 20% 28%; /* Medium-dark cool blue-gray border #3A4452 */
-    --input: 210 25% 18%; /* Dark cool blue-gray for input backgrounds #242B33 */
-    --ring: 210 70% 50%; /* Darker shade of primary blue for focus rings #3385CC */
+    --border: 210 20% 28%; 
+    --input: 210 25% 18%; 
     
-    --sidebar-background: 220 20% 15%; /* Dark bluer gray #1E242B */
-    --sidebar-foreground: 210 30% 90%; /* Very light cool blue-gray #E2E8EE */
-    --sidebar-primary: 210 70% 65%; /* Lighter primary blue */
-    --sidebar-primary-foreground: 210 70% 10%; /* Dark blue */
-    --sidebar-accent: 195 70% 55%; /* Lighter accent cyan-blue */
-    --sidebar-accent-foreground: 195 70% 10%; /* Dark cyan-blue */
-    --sidebar-border: 210 20% 25%; /* Medium-dark bluer gray #353E4A */
-    --sidebar-ring: 210 70% 50%; /* Darker primary blue for ring */
+    --sidebar-background: 220 20% 15%;
+    --sidebar-foreground: 210 30% 90%;
+    --sidebar-primary: 210 70% 65%;
+    --sidebar-primary-foreground: 210 70% 10%;
+    --sidebar-accent: 195 70% 55%;
+    --sidebar-accent-foreground: 195 70% 10%;
+    --sidebar-border: 210 20% 25%;
+    --sidebar-ring: 210 70% 50%;
 
     --chart-1: 210 60% 60%;
     --chart-2: 190 55% 50%;
@@ -108,8 +105,8 @@
 @layer utilities {
   .text-style-3d {
     text-shadow:
-      1px 1px 0px rgba(0,0,0,0.2), /* Camada de "corpo" do 3D, ligeiramente deslocada, cor escura */
+      1px 1px 0px rgba(0,0,0,0.2),
       2px 2px 0px rgba(0,0,0,0.15),
-      3px 3px 3px rgba(0,0,0,0.25); /* Sombra projetada mais suave e escura */
+      3px 3px 3px rgba(0,0,0,0.25);
   }
 }
