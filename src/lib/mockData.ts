@@ -1,3 +1,4 @@
+
 import { BookOpen, Palette, Code2, Brain, Film, Briefcase, Rocket, Music } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -25,27 +26,27 @@ export interface Course {
 export const mockCourses: Course[] = [
   {
     id: '1',
-    title: 'Creative Writing Essentials',
-    description: 'Unlock your storytelling potential and master the art of narrative.',
+    title: 'Module I - Essentials',
+    description: 'Learn the basics to build a solid foundation for the upcoming videos.',
     longDescription: 'Dive deep into character development, plot structuring, and finding your unique voice. This course covers various genres and techniques to help you craft compelling stories that captivate readers.',
     thumbnailUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'writing book',
-    instructor: 'Virginia Woolf',
+    instructor: 'Ricardo Campos',
     Icon: BookOpen,
     lessons: [
-      { id: '1-1', title: 'The Power of Story', videoUrl: 'https://placehold.co/1280x720.png', dataAiHint:'lecture presentation', duration: '12:35', description: 'Understanding the core elements of storytelling and its impact.' },
+      { id: '1-1', title: 'The Power of Story', videoUrl: 'https://www.youtube.com/watch?v=RTMf2G4ygnk', dataAiHint:'lecture presentation', duration: '12:35', description: 'Understanding the core elements of storytelling and its impact.' },
       { id: '1-2', title: 'Crafting Memorable Characters', videoUrl: 'https://placehold.co/1280x720.png', dataAiHint:'character sketch', duration: '18:20', description: 'Techniques for developing believable and engaging characters.' },
       { id: '1-3', title: 'Building Engaging Plots', videoUrl: 'https://placehold.co/1280x720.png', dataAiHint:'plot diagram', duration: '22:10', description: 'Learn about plot structures, pacing, and creating suspense.' },
     ],
   },
   {
     id: '2',
-    title: 'Digital Art Fundamentals',
+    title: 'Module II - Fundamentals',
     description: 'Learn the basics of digital painting and illustration.',
     longDescription: 'From understanding your software to mastering digital brushes and color theory, this course provides a solid foundation for aspiring digital artists. Includes practical exercises and projects.',
     thumbnailUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'digital painting',
-    instructor: 'Frida Kahlo',
+    instructor: 'Ricardo Campos',
     Icon: Palette,
     lessons: [
       { id: '2-1', title: 'Introduction to Digital Tools', videoUrl: 'https://placehold.co/1280x720.png', dataAiHint:'art software', duration: '15:40', description: 'Overview of common digital art software and hardware.' },
@@ -54,12 +55,12 @@ export const mockCourses: Course[] = [
   },
   {
     id: '3',
-    title: 'Introduction to Web Development',
+    title: 'Module III - Expert',
     description: 'Build modern websites with HTML, CSS, and JavaScript.',
     longDescription: 'This comprehensive course takes you from zero to hero in front-end web development. You\'ll learn to structure web pages, style them beautifully, and add interactivity with JavaScript.',
     thumbnailUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'coding screen',
-    instructor: 'Ada Lovelace',
+    instructor: 'Ricardo Campos',
     Icon: Code2,
     lessons: [
       { id: '3-1', title: 'HTML: The Structure of the Web', videoUrl: 'https://placehold.co/1280x720.png', dataAiHint:'html code', duration: '14:00', description: 'Learn the basics of HTML tags and document structure.' },
@@ -69,12 +70,12 @@ export const mockCourses: Course[] = [
   },
   {
     id: '4',
-    title: 'Mindfulness & Meditation',
+    title: 'Module IV - Super Expert',
     description: 'Cultivate peace and presence in your daily life.',
     longDescription: 'Explore various meditation techniques, understand the science behind mindfulness, and learn how to integrate these practices for reduced stress and improved well-being.',
     thumbnailUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'meditation nature',
-    instructor: 'Thich Nhat Hanh',
+    instructor: 'Ricardo Campos',
     Icon: Brain,
     lessons: [
       { id: '4-1', title: 'What is Mindfulness?', videoUrl: 'https://placehold.co/1280x720.png', dataAiHint:'calm mind', duration: '10:50', description: 'An introduction to the core concepts of mindfulness.' },
