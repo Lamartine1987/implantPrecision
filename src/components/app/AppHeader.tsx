@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { LogOut, UserCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export default function AppHeader() {
   const { currentUser, logout, loading } = useAuth();
@@ -37,10 +38,19 @@ export default function AppHeader() {
             <Skeleton className="h-8 w-24" />
           ) : currentUser ? (
             <>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <UserCircle className="h-5 w-5" />
-                <span>{getDisplayUserName()}</span>
-              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+                      <UserCircle className="h-5 w-5" />
+                      <span>{getDisplayUserName()}</span>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <Link href="/profile/edit">Editar Perfil</Link>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <Button variant="destructive" onClick={logout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 Logout
